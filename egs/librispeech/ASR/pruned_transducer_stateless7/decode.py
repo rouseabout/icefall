@@ -927,14 +927,16 @@ def main():
     args.return_cuts = True
     librispeech = LibriSpeechAsrDataModule(args)
 
-    test_clean_cuts = librispeech.test_clean_cuts()
-    test_other_cuts = librispeech.test_other_cuts()
+    #test_clean_cuts = librispeech.test_clean_cuts()
+    #test_other_cuts = librispeech.test_other_cuts()
+    dev_clean_cuts = librispeech.dev_clean_2_cuts()
 
-    test_clean_dl = librispeech.test_dataloaders(test_clean_cuts)
-    test_other_dl = librispeech.test_dataloaders(test_other_cuts)
+    #test_clean_dl = librispeech.test_dataloaders(test_clean_cuts)
+    #test_other_dl = librispeech.test_dataloaders(test_other_cuts)
+    dev_clean_dl = librispeech.test_dataloaders(dev_clean_cuts)
 
-    test_sets = ["test-clean", "test-other"]
-    test_dl = [test_clean_dl, test_other_dl]
+    test_sets = ["dev-clean-2"]
+    test_dl = [dev_clean_dl]
 
     for test_set, test_dl in zip(test_sets, test_dl):
         results_dict = decode_dataset(
